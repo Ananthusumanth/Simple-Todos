@@ -1,34 +1,60 @@
 /* Write your CSS here */
-.bg-container {
-  background-color: #ffc2a0;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
+.button {
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 5px;
+  height: 40px;
+  border: none;
+  background-color: red;
+  color: white;
+  margin-right: 10px;
 }
-.card-container {
-  background-color: #ffffff;
-  padding: 20px;
+.edit-button {
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 5px;
+  height: 40px;
+  border: none;
+  background-color: rgb(121, 121, 205);
+  color: white;
+  margin-right: 10px;
+}
+.save-button {
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 5px;
+  height: 40px;
+  border: none;
+  background-color: green;
+  color: white;
+  margin-right: 10px;
+}
+.title {
+  margin-right: 30px;
+}
+.titleSet {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  flex-direction: row;
+  justify-content: flex-start;
+  width: 100%;
   align-items: center;
-  border-radius: 20px;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 .container {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: center;
   border: none;
+  width: 100%;
+  margin-bottom: 10px;
 }
-.button {
-  padding: 10px;
-  border-radius: 10px;
-  border: none;
+.editInput {
+  width: 100%;
+  padding: 5px;
+  border: 2px solid green;
+  border-radius: 5px;
 }
-.title {
-  margin-right: 30px;
+
+@media (max-width: 768px) {
 }
