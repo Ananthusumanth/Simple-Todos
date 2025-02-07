@@ -1,6 +1,6 @@
 import {Component} from 'react'
-import TodoItem from '../TodoItem'
 import {v4 as uuidv4} from 'uuid'
+import TodoItem from '../TodoItem'
 import './index.css'
 
 const initialTodosList = [
@@ -38,12 +38,10 @@ const initialTodosList = [
   },
 ]
 
-// Write your code here
-
 class SimpleTodos extends Component {
   state = {
     todoList: initialTodosList,
-    editId: null,
+    editId: [],
     addValue: '',
   }
 
@@ -54,7 +52,8 @@ class SimpleTodos extends Component {
   }
 
   editTitle = id => {
-    this.setState({editId: id})
+    const {editId} = this.state
+    this.setState({editId: [...editId, id]})
   }
 
   onChangeEditInput = (id, newTitle) => {
@@ -66,8 +65,9 @@ class SimpleTodos extends Component {
     })
   }
 
-  saveChange = () => {
-    this.setState({editId: null})
+  saveChange = id => {
+    const {editId} = this.state
+    this.setState({editId: editId.filter(each => each !== id)})
   }
 
   onChangeAddValue = event => {
@@ -78,20 +78,25 @@ class SimpleTodos extends Component {
     const {todoList, addValue} = this.state
     if (addValue.length > 0) {
       const digit = addValue.split(' ')
-      const length = digit.length
+      // const length = digit.length
       const giveText =
-        digit[length - 1] > 0 ? digit.slice(0, length - 1).join(' ') : addValue
-      const addtimes = digit[length - 1] > 0 ? digit[length - 1] : 1
+        digit[digit.length - 1] > 0
+          ? digit.slice(0, digit.length - 1).join(' ')
+          : addValue
+      const addtimes = digit[digit.length - 1] > 0 ? digit[digit.length - 1] : 1
+      // const addtimes = !isNaN(parseInt(digit[digit.length - 1]))
+      //   ? parseInt(digit[length - 1])
+      //   : 1
       const newObjects = []
-      for (let i = 0; i < addtimes; i++) {
-        newObjects.push({id: uuidv4() + i, title: giveText})
+      for (let i = 0; i < addtimes; i += 1) {
+        newObjects.push({id: uuidv4(), title: giveText})
       }
       this.setState({todoList: [...todoList, ...newObjects], addValue: ''})
     }
   }
 
   render() {
-    const {todoList, editId, editValue, addValue} = this.state
+    const {todoList, editId, addValue} = this.state
     return (
       <div className="bg-container">
         <div className="card-container">
@@ -117,7 +122,6 @@ class SimpleTodos extends Component {
                 editTitle={this.editTitle}
                 editId={editId}
                 onChangeEditInput={this.onChangeEditInput}
-                editValue={editValue}
                 saveChange={this.saveChange}
               />
             ))}
